@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goel Enterprises – Quality Unlimited</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #B8962E;
+            --gold-light: #D4AF50;
+            --dark: #111111;
+            --charcoal: #1E1E1E;
+            --mid: #2D2D2D;
+            --light: #F5F2EC;
+            --muted: #8A8A8A;
+            --white: #FFFFFF;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─────────────────────────────────────── */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: var(--dark);
+            border-bottom: 2px solid var(--gold);
+            transition: box-shadow 0.3s;
+        }
+
+        #navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .nav-logo-main {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-logo-sub {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 0 22px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #CCCCCC;
+            text-decoration: none;
+            height: 68px;
+            line-height: 68px;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--dark) !important;
+            border-bottom: none !important;
+            padding: 0 20px !important;
+            height: auto !important;
+            line-height: 1 !important;
+            padding: 10px 20px !important;
+            margin-left: 16px;
+            transition: background 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            color: var(--dark) !important;
+            border-bottom-color: transparent !important;
+        }
+
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .nav-mobile {
+            display: none;
+            background: var(--charcoal);
+            border-top: 1px solid var(--mid);
+        }
+
+        .nav-mobile.open { display: block; }
+
+        .nav-mobile a {
+            display: block;
+            padding: 14px 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #CCCCCC;
+            text-decoration: none;
+            border-bottom: 1px solid var(--mid);
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .nav-mobile a:hover {
+            color: var(--gold);
+            padding-left: 2.5rem;
+        }
+
+        /* ─── HERO ───────────────────────────────────────── */
+        .hero {
+            margin-top: 68px;
+            min-height: calc(100vh - 68px);
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1200 60%, #2a1a00 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 40px,
+                rgba(184,150,46,0.03) 40px,
+                rgba(184,150,46,0.03) 41px
+            );
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(184,150,46,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(184,150,46,0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 6px 16px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.0;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span { color: var(--gold); }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+            font-family: 'Oswald', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {}
+
+        .stat-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ─── SECTION SHARED ─────────────────────────────── */
+        section { padding: 6rem 2rem; }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        /* ─── ABOUT ──────────────────────────────────────── */
+        #about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        .highlight-item h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .highlight-item p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .about-visual {
+            background: var(--dark);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            z-index: 0;
+        }
+
+        .about-visual-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-visual h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.88rem;
+        }
+
+        .spec-row .spec-name {
+            color: rgba(255,255,255,0.5);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .spec-row .spec-val {
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        /* ─── PRODUCTS ───────────────────────────────────── */
+        #products { background: var(--light); }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card:hover::after { transform: scaleX(1); }
+
+        .product-card-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(0,0,0,0.06);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .product-card ul {
+            list-style: none;
+            font-size: 0.83rem;
+            color: #555;
+        }
+
+        .product-card ul li {
+            padding: 3px 0;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .product-card ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+
+        /* ─── INDUSTRIES ─────────────────────────────────── */
+        #industries {
+            background: var(--dark);
+            padding: 5rem 2rem;
+        }
+
+        #industries .section-title { color: var(--white); }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin-top: 3rem;
+            background: var(--mid);
+        }
+
+        .industry-item {
+            background: var(--charcoal);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .industry-item:hover { background: var(--mid); }
+
+        .industry-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .industry-item h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        /* ─── CONTACT ────────────────────────────────────── */
+        #contact { background: var(--white); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info > p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .contact-detail-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .contact-detail-text strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .contact-detail-text span {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+        .form-group label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--light);
+            border: 1px solid #DDD;
+            padding: 12px 14px;
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.9rem;
+            color: var(--dark);
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-submit {
+            background: var(--dark);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 16px 36px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover { background: var(--gold); color: var(--dark); }
+
+        /* ─── FOOTER ─────────────────────────────────────── */
+        footer {
+            background: var(--dark);
+            border-top: 2px solid var(--gold);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 0.05em;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        @media (max-width: 580px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .hero-stats { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── NAVBAR ─────────────────────────────────────── -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">GE</div>
+                <div class="nav-logo-text">
+                    <span class="nav-logo-main">Goel Enterprises</span>
+                    <span class="nav-logo-sub">Est. 1973 · Ludhiana</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+            </ul>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div class="nav-mobile" id="mobileMenu">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#industries">Industries</a>
+            <a href="#contact">Get a Quote</a>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ───────────────────────────────────────── -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-tag">Quality Unlimited Since 1973</div>
+            <h1>Industrial <span>Fasteners</span><br>&amp; Scaffolding</h1>
+            <p>Nuts, Bolts, Rivets, Washers, Threaded Bars and complete Scaffolding systems — manufactured to global standards, trusted across the Middle East, Gulf &amp; Africa.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn-primary">Explore Products</a>
+                <a href="#contact" class="btn-outline">Request a Quote</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">6mm–42mm</div>
+                    <div class="stat-label">Diameter Range</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">20+</div>
+                    <div class="stat-label">Export Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">1000+</div>
+                    <div class="stat-label">SKUs Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ABOUT ──────────────────────────────────────── -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-label">Who We Are</div>
+                    <h2 class="section-title">Built on Precision &amp; Trust</h2>
+                    <div class="section-divider"></div>
+                    <p>Established in 1973, Goel Enterprises has been developing and manufacturing a full range of Fasteners, Scaffolding, Nuts, Bolts, Rivets, Washers, Thread Bar type Hinges and all sorts of Machine Screws.</p>
+                    <p>Our products are well established and preferred especially in the Middle East, Saudi Arabia, Gulf countries and many African countries. We maintain the highest quality at every stage with our own R&amp;D department.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <h4>Threaded Bar</h4>
+                            <p>Dia 6mm–42mm, Length 1m, 2m, 3m</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>Bolt, Screw, Nut</h4>
+                            <p>Dia 6mm–42mm, Length 12mm–300mm</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>Scaffolding</h4>
+                            <p>Tie Rod, Plate, Wing Nut, Base Jack</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>Finish Options</h4>
+                            <p>EG, Auto Black, Yellow Passivation, HDG</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-visual-inner">
+                        <h3>Manufacturing Specifications</h3>
+                        <div class="spec-row">
+                            <span class="spec-name">Thread Standard</span>
+                            <span class="spec-val">BSW / UNF / UNC / Metric</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Quality Grade</span>
+                            <span class="spec-val">Grade 8.8 / Grade 10.9</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">BS Standard</span>
+                            <span class="spec-val">BS 916/1083, BS 1768 ASTM</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">DIN Standard</span>
+                            <span class="spec-val">DIN 933 / DIN 931 / DIN 125</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Nut Grades</span>
+                            <span class="spec-val">Grade 5, 8, 10, 2H (ASTM A194)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Tie Rod Material</span>
+                            <span class="spec-val">EN-8 / Mild Steel</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Working Load</span>
+                            <span class="spec-val">90 KN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── PRODUCTS ─────────────────────────────────────── -->
+    <section id="products">
+        <div class="section-inner">
+            <div class="products-header">
+                <div>
+                    <div class="section-label">What We Make</div>
+                    <h2 class="section-title">Product Range</h2>
+                    <div class="section-divider"></div>
+                </div>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-card-num">01</div>
+                    <h3>Bolts</h3>
+                    <p>Hexagonal Head, Carriage, Roofing, Machine &amp; Bent Steel bolts across all standards.</p>
+                    <ul>
+                        <li>Dia M4–M36 / 3mm–36mm</li>
+                        <li>Length 12mm–300mm</li>
+                        <li>Zinc Plated / Auto Black / Golden</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-num">02</div>
+                    <h3>Nuts</h3>
+                    <p>Hexagonal, Coupling, Nyloc, Square and Wing Nuts for every application.</p>
+                    <ul>
+                        <li>1/4" to 1½" and 4mm–39mm</li>
+                        <li>BSW / UMC / UNF / MM threads</li>
+                        <li>Grade 5, 8, 10, 2H (ASTM A194)</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-num">03</div>
+                    <h3>Washers</h3>
+                    <p>Flat and Spring Lock Washers in zinc plated, auto black or golden finish.</p>
+                    <ul>
+                        <li>Flat Washer — DIN 125</li>
+                        <li>Spring Lock — DIN 127 Type B</li>
+                        <li>Heat treated alloy spring steel</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-num">04</div>
+                    <h3>Threaded Rods &amp; Studs</h3>
+                    <p>Fully threaded rods and high-temp studs in carbon steel and Grade B-7.</p>
+                    <ul>
+                        <li>MM-6 to 42mm diameter</li>
+                        <li>Length 1m, 2m or 3m</li>
+                        <li>Carbon Steel / Grade B-7 ASTM A193</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-num">05</div>
+                    <h3>Scaffolding</h3>
+                    <p>Verticals, Ledgers, Transoms, Base Jacks, U-Heads and accessories.</p>
+                    <ul>
+                        <li>Pipe OD 34mm / 38mm options</li>
+                        <li>Solid Ø32mm base jacks</li>
+                        <li>Adjustable length up to 1.0m</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-num">06</div>
+                    <h3>Automotive Components</h3>
+                    <p>U-Bolts, Centre Bolts, Tralex Bolts for Indian, Japanese, American &amp; European vehicles.</p>
+                    <ul>
+                        <li>All standard vehicle sizes</li>
+                        <li>Finish as per requirement</li>
+                        <li>DIN / ASTM standards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── INDUSTRIES ───────────────────────────────────── -->
+    <section id="industries">
+        <div class="section-inner">
+            <div class="section-label">Where We Serve</div>
+            <h2 class="section-title" style="color:var(--white)">Industries &amp; Markets</h2>
+            <div class="section-divider"></div>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <div class="industry-icon">🏗️</div>
+                    <h4>Construction</h4>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🚗</div>
+                    <h4>Automotive</h4>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">⚙️</div>
+                    <h4>Engineering</h4>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🌍</div>
+                    <h4>Export / Gulf</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ──────────────────────────────────────── -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-label">Get in Touch</div>
+                    <h2 class="section-title">Request a Quote</h2>
+                    <div class="section-divider"></div>
+                    <p>We manufacture to custom specifications and requirements. Contact us with your needs and we'll respond promptly.</p>
+
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">📍</div>
+                        <div class="contact-detail-text">
+                            <strong>Office</strong>
+                            <span># 24, Jiwan Nagar Chowk, Phase V, Lucky Complex,<br>Jeevan Nagar Road, Focal Point, Ludhiana, Punjab – 141010</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">📞</div>
+                        <div class="contact-detail-text">
+                            <strong>Mobile</strong>
+                            <span>99888-99707 / 98726-49707</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">✉️</div>
+                        <div class="contact-detail-text">
+                            <strong>Email</strong>
+                            <span>harishgoel888@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" placeholder="Company name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="you@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Product Category</label>
+                            <select>
+                                <option value="">Select a category…</option>
+                                <option>Bolts &amp; Screws</option>
+                                <option>Nuts</option>
+                                <option>Washers</option>
+                                <option>Threaded Rods &amp; Studs</option>
+                                <option>Scaffolding</option>
+                                <option>Automotive Components</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message / Specifications</label>
+                            <textarea placeholder="Describe your requirement — size, quantity, finish, standard…"></textarea>
+                        </div>
+                        <button class="form-submit">Send Inquiry →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ───────────────────────────────────────── -->
+    <footer>
+        <div class="footer-logo">Goel Enterprises</div>
+        <div class="footer-tagline">Quality Unlimited</div>
+        <p>© 2026 Goel Enterprises, Ludhiana. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id], .hero');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 100) current = sec.id || '';
+            });
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                const href = a.getAttribute('href').replace('#', '');
+                if (href === current || (current === '' && href === '')) a.classList.add('active');
+            });
+        });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
